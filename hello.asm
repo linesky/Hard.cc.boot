@@ -1,4 +1,4 @@
-
+	.file	"hello.c"
 	.machinemode zarch
 	.machine "z196"
 .text
@@ -67,4 +67,6 @@ main:
 	br	%r14
 	.cfi_endproc
 .LFE7:
-
+	.size	main, .-main
+	.ident	"GCC: (Debian 10.2.1-6) 10.2.1 20210110"
+	.section	.note.GNU-stack,"",@progbits
