@@ -3,9 +3,9 @@
 	.machine "z196"
 .text
 	.align	8
-.globl adds
-	.type	adds, @function
-adds:
+.globl divs
+	.type	divs, @function
+divs:
 .LFB6:
 	.cfi_startproc
 	ldgr	%f2,%r11
@@ -21,8 +21,11 @@ adds:
 	st	%r1,164(%r11)
 	lr	%r1,%r2
 	st	%r1,160(%r11)
-	l	%r1,164(%r11)
-	a	%r1,160(%r11)
+	lgf	%r1,164(%r11)
+	lgf	%r4,160(%r11)
+	lgr	%r3,%r1
+	dsgr	%r2,%r4
+	lgr	%r1,%r3
 	lgfr	%r1,%r1
 	lgr	%r2,%r1
 	lgdr	%r15,%f0
@@ -33,7 +36,7 @@ adds:
 	br	%r14
 	.cfi_endproc
 .LFE6:
-	.size	adds, .-adds
+	.size	divs, .-divs
 	.section	.rodata
 	.align	2
 .LC0:
@@ -63,7 +66,7 @@ main:
 	lgf	%r1,172(%r11)
 	lgr	%r3,%r2
 	lgr	%r2,%r1
-	brasl	%r14,adds
+	brasl	%r14,divs
 	lgr	%r1,%r2
 	lgfr	%r1,%r1
 	lgr	%r3,%r1
