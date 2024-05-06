@@ -1,2 +1,3 @@
-# Hard.cc.boot
-Boot .image hard boot build id cc compilers
+# s930x.assembly
+
+exemples and tutor of assembly s930x
