@@ -1,4 +1,3 @@
-# s930x.assembly
+# matrix.2d
 
-exemples and tutor of assembly s930x
-"as hello -o hello.o;gcc hello.o -o hello"
+2d matrix screen simulator
