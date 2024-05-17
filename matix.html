@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grid Visualization</title>
+<style>
+  body {
+    margin: 0;
+    overflow: hidden;
+    background-color: yellow;
+  }
+  canvas {
+    display: block;
+  }
+</style>
+</head>
+<body>
+<canvas id="canvas"></canvas>
+<script>
+  const canvas = document.getElementById('canvas');
+  const ctx = canvas.getContext('2d');
+  const numRows = 32;
+  const numCols = 32;
+  const gridSize = 400;
+  const cellSize = gridSize / numRows;
+  let counter = 0;
+
+  canvas.width = gridSize;
+  canvas.height = gridSize;
+
+  function drawGrid() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.strokeStyle = 'black';
+    ctx.lineWidth = 1;
+
+    for (let i = 0; i <= numRows; i++) {
+      ctx.beginPath();
+      ctx.moveTo(0, i * cellSize);
+      ctx.lineTo(canvas.width, i * cellSize);
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(i * cellSize, 0);
+      ctx.lineTo(i * cellSize, canvas.height);
+      ctx.stroke();
+    }
+  }
+
+  function updateGrid(counter) {
+    drawGrid();
+    const x = counter % numCols;
+    const y = Math.floor(counter / numCols) % numRows;
+
+    // Draw horizontal line
+    ctx.strokeStyle = 'blue';
+    ctx.beginPath();
+    ctx.moveTo(0, y * cellSize + cellSize / 2);
+    ctx.lineTo(canvas.width, y * cellSize + cellSize / 2);
+    ctx.stroke();
+
+    // Draw vertical line
+    ctx.beginPath();
+    ctx.moveTo(x * cellSize + cellSize / 2, 0);
+    ctx.lineTo(x * cellSize + cellSize / 2, canvas.height);
+    ctx.stroke();
+
+    // Draw rectangle at the intersection
+    ctx.fillStyle = 'white';
+    ctx.fillRect(x * cellSize, y * cellSize, cellSize, cellSize);
+
+    // Update the title with the current counter
+    document.title = `Counter: ${counter}`;
+  }
+
+  function incrementCounter() {
+    counter++;
+    updateGrid(counter);
+  }
+
+  setInterval(incrementCounter, 500);
+  drawGrid(); // Initial grid drawing
+</script>
+</body>
+</html>
+
