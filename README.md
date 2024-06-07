@@ -1,3 +1,4 @@
-# matrix.2d
+# distro.puppy.pas
 
-2d matrix screen simulator
+
+free pascal elf builder to puppy os
