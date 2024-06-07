@@ -1,4 +1,5 @@
 # distro.puppy.pas
 
 
-free pascal elf builder to puppy os
+
+free pascal builder elf into puppy os
